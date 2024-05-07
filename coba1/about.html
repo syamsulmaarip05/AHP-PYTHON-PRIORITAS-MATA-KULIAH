@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar Example</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Arial", sans-serif;
+      background: url("B 03.jpg");
+    }
+    .navbar {
+      background: url("B 03.jpg");
+      background-size: cover;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000; /* You can adjust the z-index based on your layout */
+    }
+
+    .logo {
+      width: 165px; /* Adjust the width as needed */
+      height: auto;
+    }
+
+    .nav-links ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .nav-links li {
+      margin-right: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .profile-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .profile-button img {
+      width: 750px;
+      height: 60px;
+      border-radius: 100%;
+    }
+    .container {
+      background: url("B 03.jpg");
+      padding: 20px;
+      text-align: center;
+      color: aliceblue;
+      border-radius: 50px;
+    }
+
+    .animated-text {
+      max-width: 800px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    .animated {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .founder-section {
+      text-align: center;
+      margin-top: 30px;
+      margin-right: 10px;
+    }
+
+    .founder-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .founder-photos {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .founder-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+    }
+
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile {
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+    }
+
+    .profile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h3 {
+      color: aliceblue;
+    }
+  </style>
+  <body>
+    <div class="navbar">
+      <img class="logo" src="Logo Lions 02.png" alt="Logo" />
+      <div class="nav-links">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="profile">
+        <button class="profile-button" onclick="goToProfile()">
+          <img src="07.jpg" alt="Profile Image" />
+        </button>
+      </div>
+
+      <script>
+        function goToProfile() {
+          // Mengarahkan ke halaman "profile.html"
+          window.location.href = "profile.html";
+        }
+      </script>
+    </div>
+  </body>
+  <html>
+    <div class="container animated-text">
+      <div class="content">
+        <h1 class="animated" style="font-family: 'Arial', sans-serif">
+          Haii, Selamat datang di Lions Priority !!!
+        </h1>
+        <p>
+          Disini kami membantu mengatur pengerjaan tugas Kamu dengan akurat.
+          Pengguna dapat dengan mudah menetapkan tenggat waktu untuk setiap
+          tugas dan menerima pemberitahuan prioritas yang perlu dikerjakan
+          terlebih dahulu
+        </p>
+        <p>
+          Kami membantu mahasiswa Lions untuk mengelola tugas mereka dengan
+          lebih efisien. Prioritaskan tugas-tugas Kamu, tetap fokus, dan capai
+          kesuksesan akademis Kamu Sekarang!
+        </p>
+      </div>
+    </div>
+    <div class="founder-section">
+      <h2 class="founder-title">developer by</h2>
+      <div class="founder-photos">
+        <div class="founder-photo">
+          <img src="14.jpg" alt="Founder 1" />
+          <h3>Hii, saya Syamsul. Saya dari Informatika Kelas A.</h3>
+        </div>
+        <div class="founder-photo">
+          <img src="07.jpg" alt="Founder 2" />
+          <h3>Hii, saya Nazwa. Saya dari Informatika Kelas A.</h3>
+        </div>
+        <div class="founder-photo">
+          <img src="05.jpg" alt="Founder 3" />
+          <h3>Hii, saya Salman. Saya dari Informatika Kelas A.</h3>
+        </div>
+      </div>
+    </div>
+  </html>
+</html>

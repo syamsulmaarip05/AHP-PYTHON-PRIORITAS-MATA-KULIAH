@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='home.css')}}"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">logo</a>
+      <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="/logout">logout</a>
+      </nav>
+    </header>
+    <div class="main-content">
+      <div class="container">
+        <header>ISI DATA TUGAS</header>
+        <form id="tugasForm" method="POST" class="form">
+          <div class="input-box">
+            <label for="mata_kuliah">MATA KULIAH</label>
+            <input
+              type="text"
+              id="mata_kuliah"
+              name="mata_kuliah"
+              pattern="[A-Za-z ]+"
+              placeholder="Masukan Nama"
+              required
+            />
+          </div>
+          <div class="input-box">
+            <label for="tenggat_waktu">TENGGAT WAKTU</label>
+            <input
+              type="datetime-local"
+              id="tenggat_waktu"
+              name="tenggat_waktu"
+              placeholder="Masukan Nama"
+              required
+            />
+          </div>
+          <div class="column">
+            <div class="input-box daftar">
+              <label for="partisipan">JENIS PARTISIPAN</label>
+              <div class="column">
+                <div class="select-box">
+                  <select id="partisipan" name="partisipan">
+                    <option value="individu">individu</option>
+                    <option value="kelompok">kelompok</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="input-box daftar">
+              <label for="sks">SKS</label>
+              <div class="column">
+                <div class="select-box">
+                  <select id="sks" name="sks">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="input-box daftar">
+              <label for="tingkat_kesulitan">TINGKAT KESULITAN</label>
+              <div class="column">
+                <div class="select-box">
+                  <select id="tingkat_kesulitan" name="tingkat_kesulitan">
+                    <option value="mudah">mudah</option>
+                    <option value="sulit">kelompok</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="input-box daftar">
+              <label for="jenis_tugas">JENIS TUGAS</label>
+              <div class="column">
+                <div class="select-box">
+                  <select id="jenis_tugas" name="jenis_tugas">
+                    <option value="projek">projek</option>
+                    <option value="jurnal">jurnal</option>
+                    <option value="paper">paper</option>
+                    <option value="esai">esai</option>
+                    <option value="rangkuman">rangkuman</option>
+                    <option value="quizz">quizz</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" value="Tambah Tugas">submit</button>
+        </form>
+      </div>
+      <div class="container2">
+        <div class="tabel">
+          <div class="table_section">
+            <table>
+              <thead class="scrollable-body">
+                <tr>
+                  <th>Mata Kuliah</th>
+                  <th>Tenggat Waktu</th>
+                  <th>Jenis Partisipan</th>
+                  <th>Jumlah SKS</th>
+                  <th>Tingkat Kesulitan</th>
+                  <th>Jenis Tugas</th>
+                  <th>Action</th>
+                </tr>
+                {% for tugas in data_tugas %}
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ tugas.mata_kuliah }}</td>
+                  <td>{{ tugas.tenggat_waktu }}</td>
+                  <td>{{ tugas.partisipan }}</td>
+                  <td>{{ tugas.sks }}</td>
+                  <td>{{ tugas.tingkat_kesulitan }}</td>
+                  <td>{{ tugas.jenis_tugas }}</td>
+                  <td></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="button_submit">
+          <form method="POST" action="/hitung_prioritas">
+            <button type="submit" value="Tentukan Prioritas">
+              Tentukan Prioritas
+            </button>
+          </form>
+        </div>
+        <div class="hasil">
+          <h1>Hasil Prioritas Mata Kuliah</h1>
+          <ol id="hasil-prioritas-list">
+            {% for mata_kuliah, hasil in sorted_hasil %}
+            <li>{{ mata_kuliah }} - Hasil: {{ hasil }}</li>
+            {% endfor %}
+          </ol>
+          <a href="/">Kembali ke Isi Data</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+@app.route('/hapus_tugas/<int:id_tugas>', methods=['POST'])
+def hapus_tugas(id_tugas):
+    if 'username' in session:
+        username = session['username']
+        # Periksa apakah tugas yang akan dihapus dimiliki oleh pengguna yang login
+        mycursor.execute("SELECT * FROM tugas WHERE id_tugas = %s AND id_pengguna = (SELECT id FROM register WHERE username = %s)", (id_tugas, username))
+        tugas = mycursor.fetchone()
+
+        if tugas:
+            # Hapus tugas dari database
+            mycursor.execute("DELETE FROM tugas WHERE id_tugas = %s", (id_tugas,))
+            mydb.commit()
+            flash('Tugas berhasil dihapus.', 'success')
+        else:
+            flash('Anda tidak memiliki akses untuk menghapus tugas ini.', 'danger')
+    else:
+        flash('Silakan login untuk menghapus tugas.', 'danger')
+
+    return redirect('/')
+

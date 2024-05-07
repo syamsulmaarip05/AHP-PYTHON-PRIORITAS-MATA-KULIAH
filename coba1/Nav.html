@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_dash.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('B 03.jpg') ;
+        }
+
+        nav {
+            background: url('B 03.jpg') ;
+            color: white;
+            padding: 10px;
+            display: flex;
+            position: fixed;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+           max-height: max-content;
+        }
+
+        .logo {
+            height: 65px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        li {
+            margin: 0 15px;
+        }
+
+        .center-text {
+           text-align: center;
+           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+           font-weight: bold;
+           font-size: large;
+        }
+
+
+        .dropdown-btn {
+            cursor: pointer;
+            background-color: #12162e;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background: url('B 03.jpg') ;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            color: aliceblue;
+        }
+
+        .sidebar a {
+            padding: 15px 15px 15px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #55545c;
+            display: flex;
+        }
+
+        .sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            
+        }
+        .container {
+            background: aliceblue;
+    padding: 20px;
+    text-align: center;
+    color: rgb(18, 32, 45);
+}
+
+.animated-text {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.animated {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <button class="dropdown-btn" onclick="toggleSidebar()" style="font-size: 34px;">&#9776; </button>
+
+
+        <div id="mySidebar" class="sidebar">
+            <a href="#profile">Profile</a>
+            <a href="#home">Home</a>
+            <a href="#tugas">Tugas</a>
+        </div>
+        </div>
+  
+       <!-- <div  class="center-text">Prioritaskan Tugasmu Sekarang </div> -->
+    </ul>
+    <img class="logo" src="Logo Lions 02.png">
+</nav>
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById('mySidebar');
+        if (sidebar.style.width === '250px') {
+            sidebar.style.width = '0';
+        } else {
+            sidebar.style.width = '250px';
+        }
+    }
+</script>
+<script>
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+
+    document.querySelector('.sidebar a[href="#profile"]').addEventListener('click', function () {
+        navigateTo('profile.html');
+    });
+    document.querySelector('.sidebar a[href="#home"]').addEventListener('click', function () {
+navigateTo('home.html');
+});
+
+     document.querySelector('.sidebar a[href="#tugas"]').addEventListener('click', function () {
+ navigateTo('tugas.html');
+});
+
+</script>
+</html>
+
+            <div class="container animated-text">
+                <div class="content">
+                    <h1 class="animated" style=" font-family: 'Arial', sans-serif;">Hallo Good People !!</h1>
+                    <p>Disini kami membantu mengatur pengerjaan tugas Kamu dengan akurat.  Pengguna dapat dengan mudah menetapkan tenggat waktu untuk setiap tugas dan menerima pemberitahuan prioritas yang perlu dikerjakan terlebih dahulu</p>
+             </div>
+            </div>
+                    <div style="color: black; font-size: 32px; font-family: Montserrat; font-weight: 700; margin-top: 50px; letter-spacing: 3px; word-wrap: break-word; text-align: center;">Yukk Belajar Ada Beberapa Rekomendasi Video  Untuk Kalian
+                    </div><br/><br/><br/><br/><br/>
+                </div>
+            </div>
+            <div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; background-color: aliceblue; padding: 20px;">
+                    <div style="width: 45%; margin-bottom: 10px;">
+                        <img src="kalkulus.jpg" onclick="openDestinationPage('destinasi 1.html')" style="width: 100%; height: auto; border-radius: 20px; cursor: pointer;" />
+                    </div>
+                    <div style="width: 45%; margin-top: 10px;">
+                        <img src="B 02.jpg" onclick="openDestinationPage('destinasi2.html')" style="width: 100%; height: auto; border-radius: 20px; cursor: pointer;" />
+                    </div>
+                    <div style="width: 45%; margin-bottom: 10px;">
+                        <img src="B 02.jpg" onclick="openDestinationPage('destinasi3.html')" style="width: 100%; height: auto; border-radius: 20px; cursor: pointer;" />
+                    </div>
+                    <div style="width: 45%; margin-top: 10px;">
+                        <img src="B 03.jpg" onclick="openDestinationPage('destinasi4.html')" style="width: 100%; height: auto; border-radius: 20px; cursor: pointer;" />
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                function openDestinationPage(destination) {
+                    window.location.href = destination;
+                }
+            </script>
+            
+            
+         
+      
+        
+   

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Example</title>
+</head>
+<style>
+    body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('B 03.jpg');
+}
+.navbar {
+    background: url('B 03.jpg');
+    background-size: cover;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* You can adjust the z-index based on your layout */
+}
+
+
+.logo {
+    width: 165px; /* Adjust the width as needed */
+    height: auto;
+}
+
+
+.nav-links ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+
+.nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .profile-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .profile-button img {
+            width: 750px;
+            height: 60px;
+            border-radius: 100%;
+        }
+
+        .profile {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 50%;     
+            display: flex;
+            align-items: center;
+    
+        }
+
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        form {
+            margin-top: 100px;
+            background-color: rgb(9, 9, 45);
+            padding: 20px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px; 
+            width: 1000px;
+            display: list-item;
+            margin-left: 375px;
+    }
+
+
+
+
+    input {
+      width: 475px;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+    
+
+
+    input[type="submit"] {
+      background-color: rgb(202, 202, 202);
+      color: rgb(49, 30, 30);
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .profile-jpg {
+        width: 100px; /* Adjust the width as needed */
+        height: 100px; /* Adjust the height as needed */
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 20px; /* Adjust the margin as needed */
+    }
+
+    .profile-jpg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+        .error-message {
+        color: red;
+        margin-top: 5px;
+    }
+      .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: flex-start; 
+      display: flex;
+    justify-content: space-between;
+    }
+  
+  .form-container {
+    width: 45%; /* Adjust the width as needed */
+  }
+  div {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-right: 100px;
+      font-size: 20px;
+      color: aliceblue;
+    }
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px; /* Adjust the margin as needed */
+    }
+    .edit-profile-button,
+    .keluar-button {
+        background-color: rgb(202, 202, 202);
+        color: rgb(49, 30, 30);
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        width: 48%; /* Adjust the width as needed */
+    }
+</style>
+<body>
+    <div class="navbar">
+        <img class="logo" src="Logo Lions 02.png" alt="Logo">
+        <div class="nav-links">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+    <div class="profile">
+        <button class="profile-button" onclick="goToProfile()">
+          <img src="07.jpg" alt="Profile Image">
+        </button>
+      </div>
+      
+      <script>
+        function goToProfile() {
+          // Mengarahkan ke halaman "profile.html"
+          window.location.href = 'profile.html';
+        }
+      </script>
+    </div>
+</body>
+
+<html>
+    <form>
+        <div class="profile-jpg">
+            <img src="07.jpg" alt="Profile jpg">
+        </div>
+        <div class="container">
+        <div class="form-container">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+    
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+    
+        <label for="password">Kata Sandi</label>
+        <input type="password" id="password" name="password" required>
+    
+        <label for="universitas">Universitas</label>
+        <input type="text" id="universitas" name="universitas" required>
+        <div class="button-container">
+            <input type="submit" class="edit-profile-button" value="Edit Profile">
+            <input type="button" class="keluar-button" value="Keluar" onclick="goToHome()">
+        </div>
+    </div>
+</div>
+      </form>
+</html>
+<script>
+    // Add a new function to redirect to home.html
+    function goToHome() {
+        window.location.href = 'home.html';
+    }
+</script>
+<script>
+    function validateForm() {
+        // Validate email
+        var emailInput = document.getElementById('email');
+        if (!emailInput.value.includes('@')) {
+            alert('Email harus memiliki karakter @');
+            return false;
+        }
+
+        // Validate password length
+        var passwordInput = document.getElementById('password');
+        if (passwordInput.value.length < 8) {
+            alert('Kata Sandi harus memiliki minimal 8 karakter');
+            return false;
+        }
+
+        // If all validations pass, the form will be submitted
+        return true;
+    }
+</script>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pengisian Mata Kuliah</title>
+  <style>
+    body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+        }
+
+        nav {
+            background-color: #12162e;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            height: 65px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        li {
+            margin: 0 15px;
+        }
+
+        .center-text {
+           text-align: center;
+           font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+           font-weight: bold;
+           font-size: large;
+        }
+
+
+        .dropdown-btn {
+            cursor: pointer;
+            background-color: #12162e;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background: url('B 03.jpg') ;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            color: aliceblue;
+        }
+
+        .sidebar a {
+            padding: 15px 15px 15px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #55545c;
+            display: flex;
+        }
+
+        .sidebar-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            
+        }
+
+        body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: flex-start; 
+      display: flex;
+    justify-content: space-between;
+    }
+  
+  .form-container {
+    width: 45%; /* Adjust the width as needed */
+  }
+  .result-container {
+    width: 45%;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+
+  .form-container div {
+    margin-bottom: 10px;
+  }
+  .form-container button {
+    margin-top: 10px;
+  }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      align-items: flex-start; 
+      color: #12162e;
+    }
+
+    div {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-right: 100px;
+      font-size: 20px;
+    }
+
+    select,
+    input {
+  padding: 8px;
+  font-size: 20px;
+  width: 500px; /* Set your desired width here */
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Include this line to include padding and border in the total width */
+  align-items: flex-end; 
+}
+
+
+button {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    /* tutor */
+
+  </style>
+</head>
+<body>
+    <nav>
+      <button class="dropdown-btn" onclick="toggleSidebar()" style="font-size: 34px;">&#9776; </button>
+        <div id="mySidebar" class="sidebar">
+            <a href="#profile">Profile</a>
+            <a href="#home">Home</a>
+            <a href="#tugas">Tugas</a>
+        </div>
+        </div>
+  
+       <div  class="center-text">Prioritaskan Tugasmu Sekarang </div>
+    </ul>
+    <img class="logo" src="Logo Lions 02.png">
+</nav>
+
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById('mySidebar');
+        if (sidebar.style.width === '250px') {
+            sidebar.style.width = '0';
+        } else {
+            sidebar.style.width = '250px';
+        }
+    }
+</script>
+<script>
+    function navigateTo(page) {
+        window.location.href = page;
+    }
+
+    document.querySelector('.sidebar a[href="#profile"]').addEventListener('click', function () {
+        navigateTo('profile.html');
+    });
+    document.querySelector('.sidebar a[href="#home"]').addEventListener('click', function () {
+navigateTo('home.html');
+});
+
+     document.querySelector('.sidebar a[href="#tugas"]').addEventListener('click', function () {
+ navigateTo('tugas.html');
+});
+
+</script>
+<!-- pengisian tugas -->
+<div class="container">
+  <div class="form-container">
+    <form id="tugasForm">
+      <div>
+        <label>1. Apa nama Mata Kuliah yang Anda isi?</label>
+        <input type="text" id="mataKuliah" name="mataKuliah"  pattern="[A-Za-z ]+" required>
+      </div>
+      <span id="mata_kuliah_error" class="error"
+        >Mata kuliah harus berisi huruf dan spasi saja</span
+      >
+
+
+      <div>
+        <label>2. Kapan tanggal pengisian?</label>
+        <label for="tenggat_waktu"></label>
+      <input
+        type="datetime-local"
+        id="tenggat_waktu"
+        name="tenggat_waktu"
+        required
+      /><br /><br />
+      <span id="tenggat_waktu_error" class="error"
+        >Tenggat waktu harus diisi</span
+      >
+      </div>
+
+      <div>
+        <label>3. Pilih jenis partisipasi Anda:</label>
+        <select id="jenisPartisipasi" name="jenisPartisipasi" required>
+          <option value="individu">Individu</option>
+          <option value="kelompok">Kelompok</option>
+        </select>
+      </div>
+
+      <div>
+        <label>4. Berapa SKS yang Anda peroleh?</label>
+        <input type="number" id="sks" name="sks" required>
+      </div>
+
+      <div>
+        <label>5. Seberapa tingkat kesulitan Mata Kuliah ini menurut Anda?</label>
+        <select id="tingkatKesulitan" name="tingkatKesulitan" required>
+          <option value="Mudah">Mudah</option>
+          <option value="Sedang">Sedang</option>
+          <option value="Sulit">Sulit</option>
+        </select>
+      </div>
+
+      <div>
+        <label>6. Pilih jenis tugas yang Anda kerjakan:</label>
+        <select id="jenistugas" name="jenistugas" required>
+          <option value="project">Project</option>
+          <option value="quiz">Quiz</option>
+          <option value="jurnal">Jurnal</option>
+        </select>
+      </div>
+      
+      <input type="submit" value="Tambah Tugas" />
+    </form>
+      <!-- <button type="button" onclick="submitForm()">Submit</button>
+      <button type="button" onclick="resetForm()">Tambah</button> -->
+    </form>
+  </div>
+
+  <div class="result-container" id="result"></div>
+</div>
+
+<!-- <script>
+  function submitForm() {
+    // Get form data
+    var formData = {
+      mataKuliah: document.getElementById("mataKuliah").value,
+      tanggal: document.getElementById("tanggal").value,
+      jenisPartisipasi: document.getElementById("jenisPartisipasi").value,
+      sks: document.getElementById("sks").value,
+      tingkatKesulitan: document.getElementById("tingkatKesulitan").value,
+      jenistugas: document.getElementById("jenistugas").value
+    };
+
+    // Display form data
+    var resultDiv = document.getElementById("result");
+    resultDiv.innerHTML += "<h3>Hasil Input:</h3>";
+    for (var key in formData) {
+      resultDiv.innerHTML += "<p>" + key + ": " + formData[key] + "</p>";
+    }
+  }
+
+  function addForm() {
+    // Get form data
+    var formData = {
+      mataKuliah: document.getElementById("mataKuliah").value,
+      tanggal: document.getElementById("tanggal").value,
+      jenisPartisipasi: document.getElementById("jenisPartisipasi").value,
+      sks: document.getElementById("sks").value,
+      tingkatKesulitan: document.getElementById("tingkatKesulitan").value,
+      jenistugas: document.getElementById("jenistugas").value
+    };
+
+    // Display form data
+    var resultDiv = document.getElementById("result");
+    resultDiv.innerHTML += "<h3>Hasil Input:</h3>";
+    for (var key in formData) {
+      resultDiv.innerHTML += "<p>" + key + ": " + formData[key] + "</p>";
+    }
+  }
+</script> -->
+<script>
+  // Function to handle form submission
+  document.getElementById('tugasForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevents the default form submission
+
+    // Get form values
+    var mataKuliah = document.getElementById('mataKuliah').value;
+    var tenggatWaktu = document.getElementById('tenggat_waktu').value;
+    var jenisPartisipasi = document.getElementById('jenisPartisipasi').value;
+    var sks = document.getElementById('sks').value;
+    var tingkatKesulitan = document.getElementById('tingkatKesulitan').value;
+    var jenisTugas = document.getElementById('jenistugas').value;
+
+    // Update display on the right side
+    document.getElementById('displayMataKuliah').textContent = mataKuliah;
+    document.getElementById('displayTenggatWaktu').textContent = tenggatWaktu;
+    document.getElementById('displayJenisPartisipasi').textContent = jenisPartisipasi;
+    document.getElementById('displaysks').textContent = sks;
+    document.getElementById('displaytingkatKesulitan').textContent = tingkatKesulitan;
+    document.getElementById('displayjenistugas').textContent = jenistugas;
+// ... Repeat similar lines for other form fields
+
+// ... Repeat similar lines for other form fields
+
+    // Repeat similar structure for other form fields
+
+    // Clear the form
+    document.getElementById('tugasForm').reset();
+  });
+</script>
+
+<h2>Daftar Tugas</h2>
+<table border="1">
+  <tr>
+    <th>Mata Kuliah</th>
+    <td>{{ mataKuliah }}</td>
+  </tr>
+  <tr>
+    <th>Tenggat</th>
+    <td>{{ tenggat_waktu }}</td>
+    </tr>
+    <tr>
+      <th>partisipasi</th>
+    <td>{{jenisPartisipasi }}</td>
+    </tr>
+    <tr>
+      <th>SKS</th>
+    <td>{{ sks }}</td>
+    </tr>
+    <tr>
+      <th>Tingkat Kesulitan</th>
+    <td>{{tingkatKesulitan }}</td>
+    </tr>
+    <tr>
+      <th>Jenis Tugas</th>
+    <td>{{ jenistugas }}</td>
+  </tr>
+
+</table>
+  <input type="submit" value="Tentukan Prioritas" />
+</form>
+
+</body>
+
+</html>

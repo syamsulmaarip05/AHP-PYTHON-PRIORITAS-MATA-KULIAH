@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='home.css')}}"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Your Title Here</title>
+  </head>
+  <body>
+    <header class="header">
+      <img class="logo-img" src="static/Logo Lions 02.png" alt="LOGIN" />
+      <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/logout">Logout</a>
+      </nav>
+    </header>
+    <div class="main-content">
+      <div class="container2">
+        <div class="tabel">
+          <div class="table_section">
+            <table>
+              <thead class="scrollable-body">
+                <tr>
+                  <th>Mata Kuliah</th>
+                  <th>Tenggat Waktu</th>
+                  <th>Jenis Partisipan</th>
+                  <th>Jumlah SKS</th>
+                  <th>Tingkat Kesulitan</th>
+                  <th>Jenis Tugas</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for tugas in data_tugas %}
+                <tr>
+                  <td>{{ tugas[0] }}</td>
+                  <td>{{ tugas[1] }}</td>
+                  <td>{{ tugas[2] }}</td>
+                  <td>{{ tugas[3] }}</td>
+                  <td>{{ tugas[4] }}</td>
+                  <td>{{ tugas[5] }}</td>
+                  <td>
+                    <!-- <form method="POST" action="/edit_tugas">
+                      <button
+                        class="edit-button"
+                        type="submit"
+                        name="id_tugas"
+                        value="{{tugas[6]}}"
+                      >
+                        <i class="bx bxs-edit-alt"></i>
+                      </button>
+                    </form> -->
+                    <form method="POST" action="/hapus_tugas">
+                      <button
+                        class="delete-button"
+                        type="submit"
+                        name="id_tugas"
+                        value="{{tugas[6]}}"
+                      >
+                        <i class="bx bxs-trash-alt"></i>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="posisi-button">
+            <div class="button_submit">
+              <form method="POST" action="/hitung_prioritas">
+                <button type="submit" value="Tentukan Prioritas">
+                  Tentukan Prioritas
+                </button>
+              </form>
+            </div>
+            <div class="button_submit">
+              <form method="GET" action="/tambah_tugas">
+                <button type="submit" value="tambah_tugas">Tambah Tugas</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="hasil">
+          <header class="header.prioritas">Hasil Prioritas</header>
+          <div class="prioritas">
+            {% for mata_kuliah, hasil in sorted_hasil %}
+            <button class="button-prioritas">
+              {{ loop.index }}: {{ mata_kuliah }}
+            </button>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

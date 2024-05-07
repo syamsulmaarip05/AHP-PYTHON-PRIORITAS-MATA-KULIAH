@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatib1e" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=l.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="login">
+      <div class="informasi">
+        <form action="">
+          <div class="logo">
+            <img class="logo-img" src="static\Logo Lions 02.png" alt="LOGIN" />
+          </div>
+        </form>
+        <h1>Haii, Selamat datang di Lions Priority !!!</h1>
+        <p>
+          Disini kamu dapat mengatur pengerjaan tugas Kamu dengan lebih akurat.
+          Kamu dapat dengan mudah menetapkan tenggat waktu untuk setiap
+          tugas dan menerima pemberitahuan prioritas yang perlu dikerjakan
+          terlebih dahulu
+        </p>
+      </div>
+      <div class="wrapper">
+        <form method="POST" action="/login">
+          <h1>LOGIN</h1>
+          <div class="register-link">
+            {% if error %}
+            <p style="color: red">{{ error }}</p>
+            {% endif %}
+          </div>
+          <div class="input-box">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <i class="icon bx bxs-user-circle"></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Kata Sandi"
+              required
+            />
+            <i class="icon bx bxs-lock-alt"></i>
+          </div>
+
+          <button type="submit" class="btn" value="Login">Login</button>
+
+          <div class="register-link">
+            <p>Belum punya akun? <a href="/register">Daftar disini</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

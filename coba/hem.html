@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='stylenav.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='styleindex.css')}}"
+    />
+    <style>
+      /* Tambahkan styling untuk kelas 'invalid' */
+      .invalid {
+        border: 1px solid red;
+      }
+
+      .error {
+        display: none;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo">logo</a>
+      <nav class="navbar">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="/logout">logout</a>
+      </nav>
+    </header>
+    <h1>Form Tugas</h1>
+    <form id="tugasForm" method="POST">
+      <label for="mata_kuliah">Mata Kuliah:</label>
+      <input
+        type="text"
+        id="mata_kuliah"
+        name="mata_kuliah"
+        required
+        pattern="[A-Za-z ]+"
+      /><br /><br />
+      <span id="mata_kuliah_error" class="error"
+        >Mata kuliah harus berisi huruf dan spasi saja</span
+      >
+
+      <label for="tenggat_waktu"
+        >Tenggat Waktu (format: YYYY-MM-DD HH:MM):</label
+      >
+      <input
+        type="datetime-local"
+        id="tenggat_waktu"
+        name="tenggat_waktu"
+        required
+      /><br /><br />
+      <span id="tenggat_waktu_error" class="error"
+        >Tenggat waktu harus diisi</span
+      >
+
+      <!-- Tambahkan kelas 'invalid' ke dalam pilihan pada form -->
+      <label for="partisipan">Jenis Partisipan :</label>
+      <select id="partisipan" name="partisipan" class="invalid">
+        <option value="individu">individu</option>
+        <option value="kelompok">kelompok</option></select
+      ><br /><br />
+
+      <label for="sks">sks :</label>
+      <select id="sks" name="sks" class="invalid">
+        <option value="1">1</option>
+        <option value="3">2</option>
+        <option value="4">3</option>
+        <option value="5">4</option></select
+      ><br /><br />
+
+      <label for="tingkat_kesulitan">Tingkat_kesulitan :</label>
+      <select id="tingkat_kesulitan" name="tingkat_kesulitan" class="invalid">
+        <option value="sulit">sulit</option>
+        <option value="mudah">mudah</option></select
+      ><br /><br />
+
+      <label for="jenis_tugas">jenis_tugas :</label>
+      <select id="jenis_tugas" name="jenis_tugas" class="invalid">
+        <option value="projek">projek</option>
+        <option value="jurnal">jurnal</option>
+        <option value="paper">paper</option>
+        <option value="esai">esai</option>
+        <option value="rangkuman">rangkuman</option>
+        <option value="quizz">quizz</option></select
+      ><br /><br />
+
+      <input type="submit" value="Tambah Tugas" />
+    </form>
+
+    <h2>Daftar Tugas</h2>
+    <table border="1">
+      <tr>
+        <th>Mata Kuliah</th>
+        <th>Tenggat Waktu</th>
+        <th>Jenis Partisipan</th>
+        <th>Jumlah SKS</th>
+        <th>Tingkat Kesulitan</th>
+        <th>Jenis Tugas</th>
+      </tr>
+      {% for tugas in data_tugas %}
+      <tr>
+        <td>{{ tugas.mata_kuliah }}</td>
+        <td>{{ tugas.tenggat_waktu }}</td>
+        <td>{{ tugas.partisipan }}</td>
+        <td>{{ tugas.sks }}</td>
+        <td>{{ tugas.tingkat_kesulitan }}</td>
+        <td>{{ tugas.jenis_tugas }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <form method="POST" action="/hitung_prioritas">
+      <input type="submit" value="Tentukan Prioritas" />
+    </form>
+
+    <h1>Hasil Prioritas Mata Kuliah</h1>
+    <ol id="hasil-prioritas-list">
+      {% for mata_kuliah, hasil in sorted_hasil %}
+      <li>{{ mata_kuliah }} - Hasil: {{ hasil }}</li>
+      {% endfor %}
+    </ol>
+    <a href="/">Kembali ke Isi Data</a>
+
+    <script>
+      // validasi form
+      var tugasForm = document.getElementById("tugasForm");
+      var mata_kuliah = document.getElementById("mata_kuliah");
+      var mata_kuliah_error = document.getElementById("mata_kuliah_error");
+      var tenggat_waktu = document.getElementById("tenggat_waktu");
+      var tenggat_waktu_error = document.getElementById("tenggat_waktu_error");
+
+      tugasForm.addEventListener("submit", function (event) {
+        if (!mata_kuliah.validity.valid) {
+          mata_kuliah.classList.add("invalid");
+          mata_kuliah_error.style.display = "block";
+          event.preventDefault();
+        }
+
+        if (!tenggat_waktu.validity.valid) {
+          tenggat_waktu.classList.add("invalid");
+          tenggat_waktu_error.style.display = "block";
+          event.preventDefault();
+        }
+      });
+
+      mata_kuliah.addEventListener("input", function () {
+        mata_kuliah.classList.remove("invalid");
+        mata_kuliah_error.style.display = "none";
+      });
+
+      tenggat_waktu.addEventListener("input", function () {
+        tenggat_waktu.classList.remove("invalid");
+        tenggat_waktu_error.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
